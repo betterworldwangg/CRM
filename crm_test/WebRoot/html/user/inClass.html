@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../../css/sys.css" type="text/css" rel="stylesheet" />
+<script src="../../js/jquery-1.3.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+		var but_jiben = $("#but_jiben");
+		var but_xiangxi = $("#but_xiangxi");
+		var xiangxi = $("#xiangxi");
+		var jiben = $("#jiben");
+		xiangxi.hide();
+		
+		but_jiben.click(function(){
+				xiangxi.hide();
+				jiben.show();
+		});
+		
+		but_xiangxi.click(function(){
+				jiben.hide();
+				xiangxi.show();
+		});
+  });
+</script>
+
+</head>
+
+<body class="emp_body">
+ <table border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td class="topg"></td>
+  </tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0"  class="wukuang"width="100%">
+  <tr>
+    <td width="1%"><img src="../../images/tleft.gif"/></td>
+    <td width="44%" align="left">[入学编班]</td>
+   
+    <td width="52%"align="right">
+       <a href="#"><img src="../../images/button/save.gif" /></a>
+       <a href="#"><img src="../../images/button/tuihui.gif" /></a>
+    </td>
+    <td width="3%" align="right"><img src="../../images/tright.gif"/></td>
+  </tr>
+</table>
+<div class="emp_info"><input type="button" id="but_jiben" value="基本信息" /><input type="button"  id="but_xiangxi" value="详细资料"/></div>
+
+<div id="jiben">
+	<table width="88%" class="emp_table">
+		<tr>
+	    	<td width="8%" align="left">姓名：</td>
+	    	<td width="19%" align="left"><input type="text" /></td>
+	    	<td width="7%" align="left">QQ：</td>
+	    	<td width="19%" align="left"><input type="text" /></td>
+	    	<td width="7%" align="left">学员来源：</td>
+	    	<td width="40%" align="left"><input type="text" /></td>
+	  	</tr>
+	  	<tr>
+	    	<td align="left">年龄：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">性别：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">电话：</td>
+	    	<td align="left"><input type="text" /></td>
+	  	</tr>
+	  	<tr>
+	    	<td align="left">联系地址：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">Email：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">学历：</td>
+	    	<td align="left"><input type="text" /></td>
+	  	</tr>
+	  	<tr>
+	    	<td align="left">家庭住址：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">学校：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">专业：</td>
+	    	<td align="left"><input type="text" /></td>
+	  	</tr>
+	  	<tr>
+	    	<td align="left">户口所在地：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">工作年限：</td>
+	    	<td align="left"><input type="text" /></td>
+	    	<td align="left">英语水平：</td>
+	    	<td align="left"><input type="text" /></td>
+	  	</tr>
+   	  	<tr>
+        	<td colspan="6"><br />编入班级：</td>
+      	</tr>
+  	  	<tr>
+   			<td colspan="6" align="left">
+	   			<table width="73%" class="emp_table" style="width:50%; border:1px solid #CCC; margin-left:0" align="left">
+		   			<tr>
+				        <td width="7%" align="center">&nbsp;</td>
+				        <td width="20%" align="center">班级名称</td>
+				        <td width="21%" align="center">开班时间</td>
+				        <td width="34%" align="center">已报人数</td>
+		      		</tr>
+					<tr>
+					  <td align="center"><input type="radio" name="class"/></td>
+					  <td align="center">Java基础班</td>
+					  <td align="center">2014年2月12日</td>
+					  <td align="center">45</td>
+					</tr>
+				    <tr>
+				      <td align="center"><input type="radio" name="class"/></td>
+				      <td align="center">Java基础班</td>
+				      <td align="center">2014年2月27日</td>
+				      <td align="center">13</td>
+				    </tr>
+		      		<tr>
+		       			<td align="center"><input type="radio" name="class"/></td>
+		        		<td align="center">Java就业班</td>
+		        		<td align="center">2014年2月23日</td>
+		        		<td align="center">67</td>
+		      		</tr>
+		      		<tr>
+		        		<td align="center"><input type="radio" name="class"/></td>
+		          		<td align="center">Java就业班</td>
+		        		<td align="center">2014年3月28日</td>
+		        		<td align="center">71</td>
+		      		</tr>
+		      	</table>
+      		</td>
+    	</tr>
+	</table>
+</div>
+
+<div id="xiangxi">
+  <table width="36%"  class="emp_table2">
+	  <tr>
+	    <td width="17%" rowspan="6"><img src="../../images/head.png" /></td>
+	    <td width="9%" height="30">身份证号：</td>
+	    <td width="70%"><input type="text" /></td>
+	    </tr>
+	  <tr>
+	    <td>紧急电话：</td>
+	    <td><input type="text" /></td>
+	    </tr>
+	  <tr>
+	    <td>紧急联系人：</td>
+	    <td><input type="text" /></td>
+	    </tr>
+	  <tr>
+	    <td>付款方式：</td>
+	    <td><input type="text" /></td>
+	    </tr>
+	  <tr>
+	    <td>身份证复印件：</td>
+	    <td><input type="text" /></td>
+	    </tr>
+	  <tr>
+	    <td height="28">毕业证复印件：</td>
+	    <td><input type="text" /></td>
+	    </tr>
+	  <tr>
+	    <td align="right">就业意向：</td>
+	    <td colspan="2"><input type="checkbox"  style="margin-left:0;"/>IBM / 微软或其他外企
+	      <input type="checkbox" style="margin-left:45px;" />
+	      神州数码 / 大唐或其他国企 
+	      <br /><input type="checkbox" style="margin-left:0;"/>亚信 / 百度或其他上市公司
+	      <input type="checkbox" />有发展的IT公司
+	      <input type="checkbox" />拥有一份软件工程师工作</td>
+	    </tr>
+	  <tr>
+	    <td align="right">工作经历：</td>
+	    <td colspan="2"><textarea cols="40" rows="9"></textarea></td>
+	  </tr>
+</table>
+
+</div>
+
+</body>
+</html>

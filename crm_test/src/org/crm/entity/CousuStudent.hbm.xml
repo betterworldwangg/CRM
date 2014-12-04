@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.crm.entity.CousuStudent" table="cousuStudent">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" length="32"/>
+		<property name="age"/>
+		<property name="addres" type="string"/>
+		<property name="description" type="string"/>
+		<property name="education" type="string"/>
+		<property name="phoneNum" type="string"/>
+		<property name="qq" type="string"/>
+		<property name="school" type="string"/>
+		<property name="sex" type="integer"/>
+		<many-to-one name="clazz" column="clazz_id" class="org.crm.entity.Clazz"/>
+	</class>
+</hibernate-mapping>

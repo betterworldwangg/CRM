@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       					   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						   http://www.springframework.org/schema/aop
+						   http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+						   http://www.springframework.org/schema/context
+						   http://www.springframework.org/schema/context/spring-context-3.2.xsd
+						   http://www.springframework.org/schema/tx
+						   http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	
+	<!-- 数据库配置信息位置 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!--  -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driver_class}"/>
+		<property name="jdbcUrl" value="${url}"/>
+		<property name="user" value="${user}"/>
+		<property name="password" value="${password}"/>
+		<property name="initialPoolSize" value="${initPoolSize}"/>
+		<property name="maxPoolSize" value="${maxPoolSize}"/>
+	</bean>
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 注入数据源 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 配置hibernate属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect org.hibernate.dialect">MySQLInnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				 <value>classpath:org/crm/entity</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置事物管理器 -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<context:component-scan base-package="org.crm.*">
+	</context:component-scan>
+	
+	<!--  支持spring注解  -->
+	<context:annotation-config/>
+	<!-- 配置hibernate模板 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 配置DaoImplBean -->
+	<bean id="employDao" class="org.crm.dao.impl.EmployeeDaoImpl">
+		<property name="hibernateTemp" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="departDao" class="org.crm.dao.impl.DepartmentDaoImpl">
+		<property name="hibernateTemp" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="courseDao" class="org.crm.dao.impl.CourseDaoImpl">
+		<property name="hibernateTemp" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="clazzDao" class="org.crm.dao.impl.ClazzDaoImpl">
+		<property name="hibernateTemp" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="cousuDao" class="org.crm.dao.impl.CousuDaoImpl">
+		<property name="hibernateTemp" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="stuDao" class="org.crm.dao.impl.StudentDaoImpl">
+		<property name="hibernateTemp" ref="hibernateTemplate"/>
+	</bean>
+	
+	<!-- 配置ServiceImplBean -->
+	<bean id="departServ" class="org.crm.service.impl.DepartmentServiceImpl">
+		<property name="departDao" ref="departDao"/>
+	</bean>
+	<bean id="employServ" class="org.crm.service.impl.EmployeeServiceImpl">
+		<property name="employDao" ref="employDao"/>
+	</bean>
+	<bean id="courseServ" class="org.crm.service.impl.CourseServiceImpl">
+		<property name="courseDao" ref="courseDao"/>
+	</bean>
+	<bean id="clazzServ" class="org.crm.service.impl.ClazzServiceImpl">
+		<property name="clazzDao" ref="clazzDao"/>
+	</bean>
+	<bean id="cousuServ" class="org.crm.service.impl.CousuServiceImpl">
+		<property name="cousuDao" ref="cousuDao"/>
+		<property name="stuDao" ref="stuDao"/>
+		<property name="clazzDao" ref="clazzDao"/>
+	</bean>
+	<bean id="stuServ" class="org.crm.service.impl.StudentServiceImpl">
+		<property name="stuDao" ref="stuDao"/>
+		<property name="clazzDao" ref="clazzDao"/>
+	</bean>
+	
+	<!-- 配置ActionBean -->
+	<bean id="employeeAction" class="org.crm.action.EmployeeAction">
+		<property name="employServ" ref="employServ"/>
+		<property name="departServ" ref="departServ"/>
+	</bean>
+	<bean id="departAction" class="org.crm.action.DepartmentAcion">
+		<property name="departServ" ref="departServ"/>
+	</bean>
+	<bean id="courseAction" class="org.crm.action.CourseAction">
+		<property name="courseServ" ref="courseServ"/>
+	</bean>
+	<bean id="clazzAction" class="org.crm.action.ClazzAction">
+		<property name="clazzServ" ref="clazzServ"/>
+		<property name="courseServ" ref="courseServ"/>
+		<property name="stuServ" ref="stuServ"/>
+	</bean>
+	<bean id="cousuAction" class="org.crm.action.CousuAction">
+		<property name="cousuServ" ref="cousuServ"/>
+		<property name="clazzServ" ref="clazzServ"/>
+	</bean>
+	<bean id="stuAction" class="org.crm.action.StudentAction">
+		<property name="stuServ" ref="stuServ"/>
+		<property name="clazzServ" ref="clazzServ"/>
+	</bean>
+	
+	<!-- 事务通知 -->
+	<tx:advice id="crm_advice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- aop切面 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* org.crm.service.*.*(..))" id="crm_poincut"/>
+		<aop:advisor advice-ref="crm_advice" pointcut-ref="crm_poincut"/>
+	</aop:config>
+	
+</beans>

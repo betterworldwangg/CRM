@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.crm.entity.Employee" table="employee">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="registName" length="32"/>
+		<property name="password" length="32"/>
+		<property name="name" length="32"/>
+		<property name="sex"/>
+		<property name="birthDay"/>
+		<property name="joinDate"/>
+		<property name="empnum" length="9"/>
+		<many-to-one name="depart" column="depart_id" class="org.crm.entity.Department"/> 
+	</class>
+</hibernate-mapping>

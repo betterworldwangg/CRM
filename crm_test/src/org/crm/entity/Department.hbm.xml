@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.crm.entity.Department" table="depart">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="string"/>
+		<property name="description" type="string"/>
+		<set name="employees">
+			<key column="depart_id"/>
+			<one-to-many class="org.crm.entity.Employee" />
+		</set>
+	</class>
+</hibernate-mapping>

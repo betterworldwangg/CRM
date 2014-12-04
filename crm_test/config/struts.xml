@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring"/>
+	<package name="default" extends="struts-default">
+		<!-- 用户管理 -->
+		<action name="emp_*" class="employeeAction" method="{1}">
+			<result name="registSucc">/index.jsp</result>
+			<result name="loginSucc">/html/frame.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="logoutSucc">/index.jsp</result>
+			<result name="listSucc">/html/staff/listEmploy.jsp</result>
+			<result name="editSucc">/html/staff/edit.jsp</result>
+			<result name="updateSucc" type="redirectAction">/emp_list</result>
+		</action>
+		<!-- 部门管理 -->
+		<action name="dept_*" class="departAction" method="{1}">
+			<result name="listSucc">/html/dep/listDep.jsp</result>
+			<result name="addSucc" type="redirectAction">/dept_list</result>
+			<result name="deleteSucc" type="redirectAction">/dept_list</result>
+			<result name="editUISucc">/html/dep/editDept.jsp</result>
+			<result name="updateSucc" type="redirectAction">/dept_list</result>
+		</action>
+		<!-- 课程管理 -->
+		<action name="course_*" class="courseAction" method="{1}">
+			<result name="listSucc">/html/lesson/listCourse.jsp</result>
+			<result name="addSucc" type="redirectAction">course_list</result>
+			<result name="editSucc">/html/lesson/editCourse.jsp</result>
+			<result name="updateSucc" type="redirectAction">course_list</result>
+		</action>
+		<!-- 班级管理 -->
+		<action name="clazz_*" class="clazzAction" method="{1}">
+			<result name="listSucc">/html/classesm/listClazz.jsp</result>
+			<result name="addSucc" type="redirectAction">/clazz_list</result>
+			<result name="addUI">/html/classesm/addClazz.jsp</result>
+			<result name="editSucc">/html/classesm/editClazz.jsp</result>
+			<result name="addSucc" type="redirectAction">/clazz_list</result>
+			<result name="updateSucc" type="redirectAction">/clazz_list</result>
+			<result name="viewSucc">/html/classesm/viewClazz.jsp</result>
+		</action>
+		<!-- 咨询学生管理 -->
+		<action name="cousu_*" class="cousuAction" method="{1}">
+			<result name="listSucc">/html/cousu/cousuList.jsp</result>
+			<result name="addUI">/html/cousu/add.jsp</result>
+			<result name="addSucc" type="redirectAction">/cousu_list</result>
+			<result name="edit">/html/cousu/edit.jsp</result>
+			<result name="updateSucc" type="redirectAction">/cousu_list</result>
+			<result name="viewSucc">/html/cousu/view.jsp</result>
+			<result name="inClassUI">/html/cousu/inClass.jsp</result>
+			<result name="inClassSucc" type="redirectAction">/cousu_list</result>
+		</action>
+		<!-- 在校学生 -->
+		<action name="stu_*" class="stuAction" method="{1}">
+			<result name="listSucc">/html/student/studentList.jsp</result>
+			<result name="edit">/html/student/edit.jsp</result>
+			<result name="updateSucc" type="redirectAction">/stu_list</result>
+			<result name="viewSucc">/html/student/view.jsp</result>
+		</action>
+	</package>
+</struts>

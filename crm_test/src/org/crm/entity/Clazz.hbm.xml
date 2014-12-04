@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.crm.entity.Clazz" table="clazz">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" length="32"/>
+		<property name="status" length="1024"/>
+		<property name="stuCounts"/>
+		<property name="beginTime" type="date"/>
+		<property name="endTime" type="date"/>
+		<many-to-one name="course" column="course_id" class="org.crm.entity.Course"/>
+		<set name="cousus">
+			<key column="clazz_id"/>
+			<one-to-many class="org.crm.entity.CousuStudent"/>
+		</set>
+		<set name="students">
+			<key column="clazz_id"/>
+			<one-to-many class="org.crm.entity.Student"/>
+		</set>
+	</class>
+</hibernate-mapping>
